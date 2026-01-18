@@ -23,7 +23,6 @@
 
 import {component} from './common';
 import C4LModal from './modal';
-import ModalFactory from 'core/modal_factory';
 import {components as Components} from './components';
 import {get_strings as getStrings} from 'core/str';
 import {
@@ -44,6 +43,7 @@ import {
     saveVariantPreferences,
     variantExists
 } from './variantslib';
+import Notification from 'core/notification';
 
 let userStudent = false;
 let previewC4L = true;
@@ -67,7 +67,10 @@ export const handleAction = async(editor) => {
     allowedComponents = getallowedComponents(editor);
     previewCSS = getpreviewCSS(editor);
     langStrings = await getAllStrings();
-    loadVariantPreferences(Components).then(() => displayDialogue(editor));
+    loadVariantPreferences(Components).then(() => {
+        displayDialogue(editor);
+        return;
+    }).catch(Notification.exception);
 };
 
 /**
@@ -79,10 +82,8 @@ const displayDialogue = async(editor) => {
     const data = Object.assign({}, {});
 
     // Show modal with buttons.
-    const modal = await ModalFactory.create({
-        type: C4LModal.TYPE,
+    const modal = await C4LModal.create({
         templateContext: await getTemplateContext(editor, data),
-        large: true,
     });
 
     // Choose class to modal.
