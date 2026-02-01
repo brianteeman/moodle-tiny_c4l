@@ -755,18 +755,18 @@ const getAllStrings = async() => {
 const addCustomComponents = () => {
     if (customComponents.length > 0) {
         customComponents.forEach(customcomp => {
-            if (Components.find(element => element.id == customcomp['id'] + 1000) == undefined) {
+            if (Components.find(element => element.id == customcomp.id + 1000) == undefined) {
                 Components.push({
-                    id: customcomp['id'] + 1000,
-                    name: customcomp['name'],
-                    buttonname: customcomp['buttonname'],
+                    id: customcomp.id + 1000,
+                    name: customcomp.name,
+                    buttonname: customcomp.buttonname,
                     type: 'custom',
                     imageClass: 'c4l-custom-icon',
                     code: replaceCustomPlaceholders(customcomp),
-                    text: customcomp['text'].length > 0 ? customcomp['text'] : '{{#textplaceholder}}',
-                    variants: customcomp['variants'] ? ["full-width"] : [],
-                    icon: customcomp['icon'],
-                    css: customcomp['css']
+                    text: customcomp.text.length > 0 ? customcomp.text : '{{#textplaceholder}}',
+                    variants: customcomp.variants ? ["full-width"] : [],
+                    icon: customcomp.icon,
+                    css: customcomp.css
                 });
             }
         });
@@ -780,9 +780,9 @@ const addCustomComponents = () => {
  * @return {string} HTML code.
  */
 const replaceCustomPlaceholders = (component) => {
-    let html = component['code'];
-    const variants = component['variants'] ? " {{VARIANTS}}" : "";
-    html = html.replace('{{CUSTOMCLASS}}', compPrefix + component['name'] + ' ' + compPrefix + "custom-component" + variants);
+    let html = component.code;
+    const variants = component.variants ? " {{VARIANTS}}" : "";
+    html = html.replace('{{CUSTOMCLASS}}', compPrefix + component.name + ' ' + compPrefix + "custom-component" + variants);
 
     return html;
 };
