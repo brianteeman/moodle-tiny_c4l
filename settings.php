@@ -29,7 +29,6 @@ $ADMIN->add('editortiny', new admin_category('tiny_c4l', new lang_string('plugin
 $settings = new admin_settingpage('tiny_c4l_settings', new lang_string('pluginname', 'tiny_c4l'));
 
 if ($ADMIN->fulltree) {
-
     // Custom components settings.
     $settings->add(new admin_setting_heading('tiny_c4l/generalsettings', new lang_string('generalsettings', 'tiny_c4l'), ''));
 
@@ -123,7 +122,6 @@ if ($ADMIN->fulltree) {
     }
 
     for ($componentindex = 1; $componentindex <= $customcompcount; $componentindex++) {
-
         // Header.
         $name = 'tiny_c4l/customcomptitle' . $componentindex;
         $title = get_string('customcomptitle', 'tiny_c4l', $componentindex);
@@ -182,5 +180,4 @@ if ($ADMIN->fulltree) {
         $setting = new admin_setting_configtext($name, $title, $description, $componentindex, PARAM_INT);
         $settings->add($setting);
     }
-
 }
