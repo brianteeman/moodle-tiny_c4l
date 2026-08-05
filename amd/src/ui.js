@@ -324,7 +324,7 @@ const handleButtonClick = (event, editor, modal) => {
         componentCode = applyLangStrings(componentCode);
 
         // Sets new content.
-        editor.selection.setContent(componentCode);
+        editor.insertContent(componentCode);
 
         // Select text.
         const nodeSel = editor.dom.select('span[data-id="' + randomId + '"]');
